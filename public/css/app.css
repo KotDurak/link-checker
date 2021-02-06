@@ -10944,3 +10944,24 @@ a.text-dark:focus {
   }
 }
 
+.add-user {
+  background: #38c172;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.add-user a {
+  color: #fff;
+  font-weight: 700;
+  position: relative;
+  bottom: 2px;
+}
+
+.project-list {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+

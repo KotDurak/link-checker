@@ -72,7 +72,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         @section('sidebar')
-
+                            @include('layouts.sidebar', ['projects' => $projects])
                         @show
                     </div>
                     <div class="col-md-9">

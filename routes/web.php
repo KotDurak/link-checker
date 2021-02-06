@@ -31,3 +31,10 @@ Route::group([
     Route::post('users/set-admin/{user}', 'Admin\UserController@setAdmin')->name('admin.users.set-admin');
     Route::post('users/cancel-admin/{user}', 'Admin\UserController@cancelAdmin')->name('admin.users.cancel-admin');
 });
+
+
+Route::group([
+    'middleware'    => 'can:admin'
+], function() {
+    Route::get('add-user', 'UserController@create')->name('user.create');
+});
