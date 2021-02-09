@@ -10965,3 +10965,8 @@ a.text-dark:focus {
   overflow-y: scroll;
 }
 
+.active-project {
+  border: 2px solid #38c172;
+  border-top-width: 2px !important;
+}
+

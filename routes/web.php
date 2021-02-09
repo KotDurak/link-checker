@@ -37,4 +37,15 @@ Route::group([
     'middleware'    => 'can:admin'
 ], function() {
     Route::get('add-user', 'UserController@create')->name('user.create');
+
+    Route::post('store-user', 'UserController@store')->name('user.store');
+
+    Route::get('update-user/{user}', 'UserController@update')->name('user.update');
+});
+
+
+Route::group([
+    'prefix'    => 'project'
+], function() {
+    Route::get('/{project}','ProjectController@view')->name('project.view');
 });
