@@ -48,4 +48,13 @@ Route::group([
     'prefix'    => 'project'
 ], function() {
     Route::get('/{project}','ProjectController@view')->name('project.view');
+    Route::get('/{project}/append', 'ProjectController@append')->name('user.append');
+    Route::post('/{project}/append', 'ProjectController@saveUser')->name('user.save-project');
+    Route::delete('/{id}', 'ProjectController@delete')->name('project.delete');
+
+    Route::post('/detach-user/{project_id}/{user_id}', 'ProjectController@detachUser')->name('project.detach-user');
+
+    Route::get('/import/{project_id}/{user_id}', 'ProjectController@import')->name('project.link-import');
+
+    Route::post('link-store/{project_id}/{user_id}', 'ProjectController@linkStore')->name('project.link-store');
 });

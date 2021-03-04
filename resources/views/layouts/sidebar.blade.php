@@ -15,6 +15,13 @@
 
             <li class="list-group-item {{$class}}">
                 <a href="{{route('project.view', [$project])}}">{{$project->name}}</a>
+                @can('admin')
+                    <form action="{{route('project.delete', [$project->id])}}" method="post" class="delete-form">
+                        @csrf
+                        @method('delete')
+                        <button class="btn"><i class="fa fa-remove"></i></button>
+                    </form>
+                @endcan
             </li>
         @endforeach
     </ul>

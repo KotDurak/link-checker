@@ -7,6 +7,8 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+@import "node_modules/font-awesome/scss/font-awesome";
+
 .add-user{
   background: $green;
   display: inline-block;
@@ -33,4 +35,12 @@
 .active-project{
   border: 2px solid $green;
   border-top-width: 2px !important;
+}
+
+.delete-form{
+  display: inline-block;
+
+  .btn{
+    color: red;
+  }
 }
