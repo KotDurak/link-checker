@@ -11,3 +11,7 @@
 <a href="{{route('project.link-import', [$project->id, $user->id])}}">
     <i class="fa fa-arrow-up"></i>
 </a>
+
+<a href="{{route('project.link-export', [$project->id, $user->id])}}">
+    <i class="fa fa-arrow-down"></i>
+</a>

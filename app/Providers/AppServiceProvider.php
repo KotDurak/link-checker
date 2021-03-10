@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use GuzzleHttp\Client;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->bind(Client::class, function() {
+            return new Client(['allow_redirects' => ['track_redirects' => true]]);
+        });
     }
 }

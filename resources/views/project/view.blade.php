@@ -5,6 +5,8 @@
 @section('content')
     <h1>{{$project->name}}</h1>
 
+    @include('project.includes.statistic', ['statistic' => $statistic])
+
     <div class="row">
         <div class="col-md-12">
             <p class="users-header">Сотрудники назначенные
@@ -15,7 +17,9 @@
             <ul class="list-group">
                 @foreach($users as $user)
                     <li class="list-group-item">
-                        {{$user->name}} ({{$user->email}})
+                        <a href="{{route('project.user-links', ['project' => $project, 'user' => $user])}}">
+                            {{$user->getFullName()}}
+                        </a>
                         @can('admin')
                             @include('project.buttons', ['user' => $user, 'project' => $project])
                         @endcan

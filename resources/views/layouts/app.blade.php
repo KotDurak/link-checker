@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-   <title>{{ config('app.name', 'Laravel') }} -  @yield('title')</title>
+   <title>@yield('title', 'Link checker')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -28,11 +28,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <a class="nav-link active" href="#">Сводка</a>
-                        <a class="nav-link" href="#">Ссылки</a>
+                        @auth
+                        <a class="nav-link" href="{{url('home')}}">Личный кабинет</a>
+                        @endauth
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest

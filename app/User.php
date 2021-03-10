@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->is_admin;
     }
+
+    public function getFullName()
+    {
+        return implode(' ', [$this->name, $this->surname]);
+    }
 }

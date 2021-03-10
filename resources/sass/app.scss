@@ -9,6 +9,14 @@
 
 @import "node_modules/font-awesome/scss/font-awesome";
 
+
+@mixin short-text{
+  display: inline-block;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .add-user{
   background: $green;
   display: inline-block;
@@ -42,5 +50,15 @@
 
   .btn{
     color: red;
+  }
+}
+
+.table-container{
+  overflow-x: scroll;
+}
+
+.fixed-column{
+  a, span{
+    @include short-text;
   }
 }

@@ -14021,3 +14021,15 @@ a.text-dark:focus {
   color: red;
 }
 
+.table-container {
+  overflow-x: scroll;
+}
+
+.fixed-column a,
+.fixed-column span {
+  display: inline-block;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

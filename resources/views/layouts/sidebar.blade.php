@@ -1,4 +1,8 @@
-<h5>Проекты:</h5>
+<h5>Проекты:
+    @can('admin')
+    <span class="add-user"><a href="{{route('project.add')}}">+</a></span>
+    @endcan
+</h5>
 
 <div class="project-list">
     <ul class="list-group">
