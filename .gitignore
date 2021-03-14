@@ -12,3 +12,4 @@ npm-debug.log
 yarn-error.log
 /workspace.xml
 /vcs.xml
+composer.phar
