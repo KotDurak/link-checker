@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->bind(Client::class, function() {
-            return new Client(['allow_redirects' => ['track_redirects' => true]]);
+            return new Client(['allow_redirects' => ['track_redirects' => true], 'verify' => false]);
         });
     }
 }

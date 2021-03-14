@@ -9,6 +9,7 @@ use App\Models\Project;
 use App\Services\Parsers\HtmlParser;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ResponseInterface;
 
@@ -96,6 +97,8 @@ class CheckService
 
         } catch (ClientException $ex) {
             $link->redirect_target_url = 0;
+        } catch (\Exception $ex) {
+            $this->setLinkFailed($link);
         }
     }
 
