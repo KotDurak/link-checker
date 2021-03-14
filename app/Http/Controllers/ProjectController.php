@@ -88,9 +88,11 @@ class ProjectController extends Controller
     public function linkStore(Request $request, int $project_id, int $user_id)
     {
         if ($request->hasFile('links')) {
-            $file = $request->file('links')->getRealPath();
+            $path1 = $request->file('links')->store('temp');
+            $path = storage_path('app').'/'.$path1;
+           // $file = $request->file('links')->getRealPath();
 
-            \Maatwebsite\Excel\Facades\Excel::import(new LinksImport(new LinkImportService(),  $project_id, $user_id), $file);
+            \Maatwebsite\Excel\Facades\Excel::import(new LinksImport(new LinkImportService(),  $project_id, $user_id), $path);
         }
 
         return back();
