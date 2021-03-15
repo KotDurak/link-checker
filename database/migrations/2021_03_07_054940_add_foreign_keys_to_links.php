@@ -37,7 +37,7 @@ class AddForeignKeysToLinks extends Migration
     {
         Schema::table('links', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
-            $table->dropForeign('project_id');
+            $table->dropForeign(['project_id']);
         });
     }
 }
