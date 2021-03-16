@@ -20,9 +20,7 @@
                         <a href="{{route('project.user-links', ['project' => $project, 'user' => $user])}}">
                             {{$user->getFullName()}}
                         </a>
-                        @can('admin')
-                            @include('project.buttons', ['user' => $user, 'project' => $project])
-                        @endcan
+                        @include('project.buttons', ['user' => $user, 'project' => $project])
                     </li>
                 @endforeach
             </ul>

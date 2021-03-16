@@ -34,6 +34,8 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('users', 'Admin\UserController@index')->name('admin.users');
         Route::post('users/set-admin/{user}', 'Admin\UserController@setAdmin')->name('admin.users.set-admin');
         Route::post('users/cancel-admin/{user}', 'Admin\UserController@cancelAdmin')->name('admin.users.cancel-admin');
+
+        Route::delete('users/{user}', 'Admin\UserController@destroy')->name('admin.users.delete');
     });
 
 
@@ -70,6 +72,7 @@ Route::group(['middleware' => ['auth']], function() {
 
         Route::post('link-store/{project_id}/{user_id}', 'ProjectController@linkStore')->name('project.link-store');
 
+        Route::post('links-delete', 'ProjectController@linksDelete');
     });
 });
 

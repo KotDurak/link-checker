@@ -29,5 +29,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('admin', function(User $user) {
             return $user->isAdmin();
         });
+
+        Gate::define('link.import', function(User $user, int $userId) {
+            return $user->isAdmin() || $user->id == $userId;
+        });
     }
 }

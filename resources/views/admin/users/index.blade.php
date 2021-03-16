@@ -14,6 +14,7 @@
             <th scope="col">E-main</th>
             <th scope="col">Админ</th>
             <th scope="col">Дата регистрации</th>
+            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
@@ -35,6 +36,15 @@
                     @endif
                 </td>
                 <td>{{$user->created_at}}</td>
+                <td>
+                    <form action="{{route('admin.users.delete', $user)}}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </form>
+                </td>
             </tr>
         @endforeach
         </tbody>

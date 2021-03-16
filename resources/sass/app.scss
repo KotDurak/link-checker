@@ -62,3 +62,18 @@
     @include short-text;
   }
 }
+
+.simple-link-text{
+  max-height: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom:0;
+}
+
+.bg-noindex{
+  background: #FFEB9C;
+}
+
+.bg-redirect{
+  background: $dark-purple;
+}
