@@ -11,11 +11,11 @@
     <tr>
         <td>
             {{\Illuminate\Support\Arr::get($statistic, 'found.count')}} &nbsp;
-            ({{\Illuminate\Support\Arr::get($statistic, 'found.percent')}} )
+            ({{\Illuminate\Support\Arr::get($statistic, 'found.percent')}} %)
         </td>
         <td>
             {{\Illuminate\Support\Arr::get($statistic, 'not_found.count')}} &nbsp;
-            ({{\Illuminate\Support\Arr::get($statistic, 'not_found.percent')}} )
+            ({{\Illuminate\Support\Arr::get($statistic, 'not_found.percent')}} %)
         </td>
     </tr>
     </tbody>
