@@ -83,6 +83,8 @@ class CheckService
             if ($ex->getCode() == 404) {
                 $this->setLinkFailed($link);
             }
+        } catch (\Exception $ex) {
+            $this->setLinkFailed($link);
         }
     }
 
