@@ -31,7 +31,7 @@ class CheckService
         if (!$link) {
             return;
         }
-
+        $link->donor_page = 'https://izhevsk4x4.ru/forum/index.php?topic=4318.555';
         $response = $this->getResponse($link);
 
         if (empty($response)) {
@@ -48,6 +48,13 @@ class CheckService
         }
 
         $this->setTargetUrlToLink($link, $links);
+
+        if (empty($link->target_url)) {
+            $link->delete();
+        }
+
+        return;
+
         $this->addNewLinks($links, $link);
         $link->anchor = $parser->getAnchor($link->target_url);
         $link->link_status = 1;
