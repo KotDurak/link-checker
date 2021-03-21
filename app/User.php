@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Link;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -45,6 +46,11 @@ class User extends Authenticatable
     public function isAdmin(): bool
     {
         return $this->is_admin;
+    }
+
+    public function links()
+    {
+        return $this->hasMany(Link::class);
     }
 
     public function getFullName()

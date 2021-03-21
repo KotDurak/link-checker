@@ -21,6 +21,8 @@
                             {{$user->getFullName()}}
                         </a>
                         @include('project.buttons', ['user' => $user, 'project' => $project])
+
+                        <span class="count">Всего ссылок: {{$user->links_count}}</span>
                     </li>
                 @endforeach
             </ul>

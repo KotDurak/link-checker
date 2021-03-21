@@ -23,7 +23,9 @@ class ProjectController extends Controller
 
     public function view(Project $project)
     {
-        $users = $project->users;
+        $users = $project->users()->withCount(['links' => function($query) use ($project) {
+            $query->where('project_id', $project->id);
+        }])->get();
 
         $statistic = $this->linkStatisticService->getStatByProject($project->id);
 
