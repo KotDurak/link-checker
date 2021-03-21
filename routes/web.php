@@ -36,8 +36,8 @@ Route::group(['middleware' => ['auth']], function() {
         Route::post('users/cancel-admin/{user}', 'Admin\UserController@cancelAdmin')->name('admin.users.cancel-admin');
 
         Route::delete('users/{user}', 'Admin\UserController@destroy')->name('admin.users.delete');
+        Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->name('logs');
     });
-
 
     Route::group([
         'middleware'    => 'can:admin'

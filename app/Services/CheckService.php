@@ -11,6 +11,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use Psr\Http\Message\ResponseInterface;
 
 class CheckService
@@ -54,6 +55,14 @@ class CheckService
             return;
         }
 
+        if ($this->isIncorrectTargetUrl($link)) {
+            $link->delete();
+            return;
+            $text = sprintf('Ссылка была удена с проекта [%s], так как ее donor_page = [%s]',
+                $link->project->name, $link->donor_page);
+            Log::warning($text);
+        }
+
         $this->addNewLinks($links, $link);
         $link->anchor = $parser->getAnchor($link->target_url);
         $link->link_status = 1;
@@ -65,6 +74,8 @@ class CheckService
         $this->setRedirectTargetUrl($link);
         $link->setUpdatedAt($link->freshTimestampString());
         $link->save();
+
+        Log::info(sprintf('Ссылка [%s]  успешно проверена для проекта [%s]', $link->donor_page, $link->project->name));
     }
 
     private function getActuallyLink(): ?Link
@@ -183,4 +194,18 @@ class CheckService
         $link->content_none = Arr::get($attributes, 'none', 0);
         $link->content_noarchive = Arr::get($attributes, 'noarchive', 0);
     }
+
+    private function isIncorrectTargetUrl(Link $link): bool
+    {
+        $findHost = $this->getHost($link->project->name);
+        $donorHost = $this->getHost($link->target_url);
+
+        return $findHost != $donorHost;
+    }
+
+    private function getHost(string $url): string
+    {
+        return Arr::get(parse_url($url), 'host', '');
+    }
+
 }

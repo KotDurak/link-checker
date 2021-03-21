@@ -5,4 +5,8 @@
     <li class="nav-item">
         <a class="nav-link text-truncate" href="{{route('admin.users')}}"><i class="fa fa-home"></i> <span class="d-none d-sm-inline">Пользователи</span></a>
     </li>
+
+    <li class="nav-item">
+        <a class="nav-link text-truncate" href="{{route('logs')}}">Логи</a>
+    </li>
 </ul>

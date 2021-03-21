@@ -176,7 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         \App\Providers\ComposerServiceProvider::class,
-        \Maatwebsite\Excel\ExcelServiceProvider::class
+        \Maatwebsite\Excel\ExcelServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class
     ],
 
     /*
