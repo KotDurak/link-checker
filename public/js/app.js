@@ -49553,6 +49553,7 @@ module.exports = function(module) {
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+$('[data-toggle="tooltip"]').tooltip();
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -49573,6 +49574,39 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 /* const app = new Vue({
     el: '#app',
 }); */
+
+$('#main-checkbox').on('change', function (e) {
+  var _this = $(this);
+
+  _this.parents('table').find('.table-checkbox').each(function () {
+    var current = $(this);
+
+    if (_this.is(':checked')) {
+      current.prop('checked', true);
+    } else {
+      current.prop('checked', false);
+    }
+  });
+});
+$('#remove-select').on('click', function () {
+  var ids = [];
+  $('.table-checkbox:checked').each(function () {
+    ids.push($(this).val());
+  });
+  $.ajax({
+    url: '/project/links-delete',
+    type: 'post',
+    data: {
+      ids: ids,
+      _token: $('meta[name="csrf-token"]').attr('content')
+    },
+    success: function success() {
+      for (var i = 0; i < ids.length; i++) {
+        $('[data-key="' + ids[i] + '"]').remove();
+      }
+    }
+  });
+});
 
 /***/ }),
 
@@ -49639,8 +49673,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! I:\OpenServerNew\domains\link-checker\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! I:\OpenServerNew\domains\link-checker\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\openservernew\openserver\domains\link-checker\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\openservernew\openserver\domains\link-checker\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

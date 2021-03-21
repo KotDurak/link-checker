@@ -28,6 +28,7 @@ class Kernel extends ConsoleKernel
         //          ->hourly();
 
         $schedule->command('link:check')->everyMinute();
+        $schedule->command('files:clear')->daily();
     }
 
     /**

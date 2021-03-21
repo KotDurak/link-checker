@@ -13,3 +13,5 @@ yarn-error.log
 /workspace.xml
 /vcs.xml
 composer.phar
+.idea/
+.idea/*

@@ -7,7 +7,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-
+$('[data-toggle="tooltip"]').tooltip();
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -30,3 +30,39 @@ window.Vue = require('vue');
 /* const app = new Vue({
     el: '#app',
 }); */
+
+
+$('#main-checkbox').on('change', function (e) {
+   let _this = $(this);
+
+   _this.parents('table').find('.table-checkbox').each(function() {
+       let current = $(this);
+       if (_this.is(':checked')) {
+           current.prop('checked', true);
+       } else {
+           current.prop('checked', false);
+       }
+   });
+});
+
+$('#remove-select').on('click', function() {
+    let ids = [];
+
+    $('.table-checkbox:checked').each(function() {
+        ids.push($(this).val());
+    });
+
+    $.ajax({
+        url:'/project/links-delete',
+        type:'post',
+        data:{
+            ids:ids,
+            _token: $('meta[name="csrf-token"]').attr('content')
+        },
+        success:function() {
+            for (var i = 0; i < ids.length; i++) {
+                $('[data-key="' + ids[i] +'"]').remove();
+            }
+        }
+    });
+});

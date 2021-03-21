@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\LinkExport;
 use App\Imports\LinksImport;
+use App\Models\Link;
 use App\Models\Project;
 use App\Services\LinkImportService;
 use App\Services\LinkStatisticService;
@@ -117,5 +118,10 @@ class ProjectController extends Controller
         Project::create($request->only('name'));
 
         return back();
+    }
+
+    public function linksDelete(Request $request)
+    {
+        return Link::destroy($request->post('ids'));
     }
 }
