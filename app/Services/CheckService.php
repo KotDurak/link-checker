@@ -51,9 +51,8 @@ class CheckService
 
         if (empty($link->target_url)) {
             $link->delete();
+            return;
         }
-
-        return;
 
         $this->addNewLinks($links, $link);
         $link->anchor = $parser->getAnchor($link->target_url);
