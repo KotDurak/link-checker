@@ -65,6 +65,11 @@ class CheckService
 
         $this->addNewLinks($links, $link);
         $link->anchor = $parser->getAnchor($link->target_url);
+
+        if (empty(trim($link->anchor))) {
+            $link->anchor = '[Не удалось распарсить текст]';
+        }
+
         $link->link_status = 1;
         $link->type = $parser->getLinkType($link->target_url);
         $this->setRelAttributes($link, $parser);
@@ -92,7 +97,11 @@ class CheckService
     private function getResponse(Link $link)
     {
         try {
-            $response = $this->client->request('GET', $link->donor_page);
+            $response = $this->client->request('GET', $link->donor_page, [
+                'headers' => [
+                    'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36'
+                ]
+            ]);
 
             return $response;
 

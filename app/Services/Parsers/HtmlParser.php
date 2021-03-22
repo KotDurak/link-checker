@@ -4,6 +4,8 @@ namespace App\Services\Parsers;
 
 
 
+use Illuminate\Support\Facades\Log;
+
 class HtmlParser
 {
     private $findUrl;
@@ -15,7 +17,11 @@ class HtmlParser
         $this->findUrl = $findUrl;
         $this->document = new \DOMDocument() ;
         @$this->document->loadHTML($html);
-        $this->initTags();
+        if (!$this->initTags()) {
+            $html = mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8');
+            @$this->document->loadHTML($html);
+            $this->initTags();
+        }
     }
 
     public function doParse(): array
@@ -52,6 +58,8 @@ class HtmlParser
             $href = $elem->getAttribute('href');
             $this->domElems[$href] = $elem;
         }
+
+        return !empty($elems);
     }
 
 
